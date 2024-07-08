@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In and Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 300px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="password"], input[type="email"], input[type="tel"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .show-password {
+            position: absolute;
+            right: 10px;
+            top: 35px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="signInForm">
+            <h2>Sign In</h2>
+            <form>
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required>
+
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required>
+
+                <label for="mobile">Mobile Number:</label>
+                <input type="tel" id="mobile" name="mobile" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="signInUsername">Username:</label>
+                <input type="text" id="signInUsername" name="username" required>
+
+                <label for="signInPassword">Password:</label>
+                <div style="position: relative;">
+                    <input type="password" id="signInPassword" name="password" required>
+                    <span class="show-password" onclick="togglePassword('signInPassword')">Show</span>
+                </div>
+
+                <button type="button" onclick="signIn()">Sign In</button>
+            </form>
+            <button type="button" onclick="showLoginForm()">Go to Login</button>
+        </div>
+
+        <div id="loginForm" class="hidden">
+            <h2>Login</h2>
+            <form>
+                <label for="loginUsername">Username:</label>
+                <input type="text" id="loginUsername" name="username" required>
+
+                <label for="loginPassword">Password:</label>
+                <div style="position: relative;">
+                    <input type="password" id="loginPassword" name="password" required>
+                    <span class="show-password" onclick="togglePassword('loginPassword')">Show</span>
+                </div>
+
+                <button type="button" onclick="login()">Login</button>
+            </form>
+            <button type="button" onclick="showSignInForm()">Go to Sign In</button>
+        </div>
+    </div>
+
+    <script>
+        // Show sign-in form
+        function showSignInForm() {
+            document.getElementById('signInForm').classList.remove('hidden');
+            document.getElementById('loginForm').classList.add('hidden');
+        }
+
+        // Show login form
+        function showLoginForm() {
+            document.getElementById('signInForm').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+        }
+
+        // Toggle password visibility
+        function togglePassword(fieldId) {
+            const passwordField = document.getElementById(fieldId);
+            const passwordFieldType = passwordField.type === 'password' ? 'text' : 'password';
+            passwordField.type = passwordFieldType;
+        }
+
+        // Save credentials for sign-in
+        function signIn() {
+            const username = document.getElementById('signInUsername').value;
+            const password = document.getElementById('signInPassword').value;
+
+            if (username && password) {
+                localStorage.setItem('username', username);
+                localStorage.setItem('password', password);
+                alert('Sign In successful! Now you can log in.');
+                showLoginForm();
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+
+        // Check credentials for login
+        function login() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            const storedUsername = localStorage.getItem('username');
+            const storedPassword = localStorage.getItem('password');
+
+            if (username === storedUsername && password === storedPassword) {
+                alert('Login successful!');
+            } else {
+                alert('Invalid username or password.');
+            }
+        }
+    </script>
+</body>
+</html>

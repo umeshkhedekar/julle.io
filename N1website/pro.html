@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 300px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+  <!----- <div class="container">
+        <h2>Profile</h2>
+        <p id="profileUsername"></p>
+        <button type="button" onclick="logout()">Logout</button>
+    </div>--------->
+    <div id="move">
+        <form>
+           
+            <input type="text" id="loginUsername" name="username" placeholder="Username1234" required>
+    
+           
+            <div class="password-container">
+                <input type="password" id="loginPassword" name="password" placeholder="Password@1234" required>
+                <span class="show-password" onclick="togglePassword('loginPassword')">&#128065;</span>
+            </div>
+            <div  id="dc">
+              <input type="checkbox" required><p>Remember Me</p>
+            </div>
+    
+            <button type="button" onclick="login()">Login</button>
+        </form>
+        <div id="hi">
+            <div class="container">
+                <h2>Profile</h2>
+                <p id="profileUsername"></p>
+                <button type="button" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const storedUsername = localStorage.getItem('username');
+            if (!storedUsername) {
+                window.location.href = 'xx.html';
+            } else {
+                document.getElementById('profileUsername').textContent = `Welcome, ${storedUsername}!`;
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem('username');
+            localStorage.removeItem('password');
+            window.location.href = 'xx.html';
+        }
+    </script>
+</body>
+</html>
